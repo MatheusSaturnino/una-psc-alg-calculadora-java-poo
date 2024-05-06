@@ -1,0 +1,99 @@
+ import java.util.Scanner;
+
+        public class Main {
+            public static double adicao(double nume1, double nume2) {
+                return nume1 + nume2;
+            }
+
+            public static double subtracao(double nume1, double nume2) {
+                return nume1 - nume2;
+            }
+
+            public static double multiplicacao(double nume1, double nume2) {
+                return nume1 * nume2;
+            }
+
+            public static double divisao(double nume1, double nume2) {
+                if (nume2 == 0) {
+                    System.out.println("Impossível realizar uma divisão por zero.");
+                    return Double.NaN;
+                } else {
+                    return nume1 / nume2;
+                }
+            }
+
+            public static double potencia(double base, double expoente) {
+                return Math.pow(base, expoente);
+            }
+
+            public static double raizQuadrada(double num) {
+                if (num < 0) {
+                    System.out.println("Não existe raiz de número negativo.");
+                    return Double.NaN;
+                } else {
+                    return Math.sqrt(num);
+                }
+            }
+
+            public static void main(String[] args) {
+                Scanner scanner = new Scanner(System.in);
+                char continuar = 'S';
+
+                while (continuar != 'q') {
+                    System.out.println("Escolha a operação:");
+                    System.out.println("1 - Adição");
+                    System.out.println("2 - Subtração");
+                    System.out.println("3 - Multiplicação");
+                    System.out.println("4 - Divisão");
+                    System.out.println("5 - Potência");
+                    System.out.println("6 - Raiz Quadrada");
+                    System.out.println("q - Sair");
+
+                    char escolha = scanner.next().charAt(0);
+                    if (escolha == 'q') {
+                        continuar = 'q';
+                        break;
+                    }
+
+                    System.out.println("Digite o primeiro número:");
+                    double nume1 = scanner.nextDouble();
+
+                    double resultado;
+                    if (escolha != '6') {
+                        System.out.println("Digite o segundo número:");
+                        double nume2 = scanner.nextDouble();
+
+                        switch (escolha) {
+                            case '1':
+                                resultado = adicao(nume1, nume2);
+                                break;
+                            case '2':
+                                resultado = subtracao(nume1, nume2);
+                                break;
+                            case '3':
+                                resultado = multiplicacao(nume1, nume2);
+                                break;
+                            case '4':
+                                resultado = divisao(nume1, nume2);
+                                break;
+                            case '5':
+                                resultado = potencia(nume1, nume2);
+                                break;
+                            default:
+                                System.out.println("Operação inválida.");
+                                resultado = Double.NaN;
+                                break;
+                        }
+                    } else {
+                        resultado = raizQuadrada(nume1);
+                    }
+
+                    if (!Double.isNaN(resultado)) {
+                        System.out.println("Resultado: " + resultado);
+                    }
+                }
+
+                scanner.close();
+                System.out.println("Programa encerrado.");
+            }
+        }
